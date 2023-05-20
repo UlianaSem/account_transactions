@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "account-transactions"
+version = "0.1.0"
+description = "This is a widget that shows several recent successful banking transactions of the client."
+authors = ["Uliana Semyonova <i@ulianasemyonova.ru>"]
+readme = "README.md"
+packages = [{include = "account_transactions"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
