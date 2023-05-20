@@ -1,6 +1,6 @@
 import json
-from operations_class import Operation
-from quick_sort import quicksort
+from src.operations_class import Operation
+from src.quick_sort import quicksort
 
 
 def formate_data_to_dictionary(file_name):
