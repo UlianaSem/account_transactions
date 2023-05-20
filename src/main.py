@@ -12,7 +12,7 @@ def main():
     print('\n\n'.join(last_five_operations))
 
 
-FILE_NAME = 'operations.json'
+FILE_NAME = '../operations.json'
 
 if __name__ == '__main__':
     main()
