@@ -32,7 +32,7 @@ class Operation:
 
     def get_encrypted_to_number(self):
         """
-        Скрывает номер исходящей(его) карты/ счета
+        Скрывает номер входящей(его) карты/ счета
         :return: строка с зашифрованным номером
         """
         payment_to_list = self.payment_to.split()
@@ -46,7 +46,7 @@ class Operation:
 
     def get_encrypted_from_number(self):
         """
-        Скрывает номер входящей(его) карты/ счета
+        Скрывает номер исходящей(его) карты/ счета
         :return: строка с зашифрованным номером
         """
         if self.payment_from is None:
