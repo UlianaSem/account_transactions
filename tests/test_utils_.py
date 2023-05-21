@@ -13,8 +13,8 @@ def get_list_for_test():
                              "description": "Перевод с карты на карту", "from": "Visa Classic 6831982476737658",
                              "to": "Visa Platinum 8990922113665229"},
                             {"id": 596171168, "state": "EXECUTED", "date": "2018-07-11T02:26:18.671407",
-                             "operationAmount": {"amount": "79931.03", "currency": {"name": "руб.", "code": "RUB"}}, "description": "Открытие вклада",
-                             "to": "Счет 72082042523231456215"},
+                             "operationAmount": {"amount": "79931.03", "currency": {"name": "руб.", "code": "RUB"}},
+                             "description": "Открытие вклада", "to": "Счет 72082042523231456215"},
                             {"id": 716496732, "state": "EXECUTED", "date": "2018-04-04T17:33:34.701093",
                              "operationAmount": {"amount": "40701.91", "currency": {"name": "USD", "code": "USD"}},
                              "description": "Перевод организации", "from": "Visa Gold 5999414228426353",
@@ -66,8 +66,16 @@ def test_add_in_class():
                   "to": "Счет 35383033474447895560"}]
 
     try:
-        assert utils.add_in_class(test_list) == [Operation (441945886, "2019-08-26T10:50:58.294041", "EXECUTED", {'amount': '31957.58', 'currency': {'name': 'руб.', 'code': 'RUB'}}, "Перевод организации", "Maestro 1596837868705199", "Счет 64686473678894779589"),
- Operation (41428829, "2019-07-03T18:35:29.512364", "EXECUTED", {'amount': '8221.37', 'currency': {'name': 'USD', 'code': 'USD'}}, "Перевод организации", "MasterCard 7158300734726758", "Счет 35383033474447895560")]
+        assert utils.add_in_class(test_list) == [Operation (441945886, "2019-08-26T10:50:58.294041", "EXECUTED",
+                                                            {'amount': '31957.58', 'currency': {'name': 'руб.',
+                                                                                                'code': 'RUB'}},
+                                                            "Перевод организации", "Maestro 1596837868705199",
+                                                            "Счет 64686473678894779589"),
+                                                 Operation (41428829, "2019-07-03T18:35:29.512364", "EXECUTED",
+                                                            {'amount': '8221.37', 'currency': {'name': 'USD',
+                                                                                                   'code': 'USD'}},
+                                                            "Перевод организации", "MasterCard 7158300734726758",
+                                                            "Счет 35383033474447895560")]
     except NameError:
         pass
 
@@ -79,7 +87,8 @@ def test_get_last_five_operations(get_list_for_test):
                                                                  '12.07.2019 Перевод организации\n'
                                                                  'Счет **4368 -> Счет **8358\n51463.70 USD',
                                                                  '19.08.2018 Перевод с карты на карту\n'
-                                                                 'Visa Classic 6831 98** **** 7658 -> Visa Platinum 8990 92** **** 5229\n'
+                                                                 'Visa Classic 6831 98** **** 7658 -> Visa Platinum '
+                                                                 '8990 92** **** 5229\n'
                                                                  '56883.54 USD',
                                                                  '11.07.2018 Открытие вклада\n'
                                                                  'Нет данных об исходящем счете -> Счет **6215\n'
