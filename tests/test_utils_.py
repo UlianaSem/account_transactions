@@ -1,3 +1,4 @@
+import contextlib, io
 import pytest
 from src import utils
 
@@ -65,19 +66,17 @@ def test_add_in_class():
                   "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
                   "to": "Счет 35383033474447895560"}]
 
-    try:
-        assert utils.add_in_class(test_list) == [Operation (441945886, "2019-08-26T10:50:58.294041", "EXECUTED",
-                                                            {'amount': '31957.58', 'currency': {'name': 'руб.',
-                                                                                                'code': 'RUB'}},
-                                                            "Перевод организации", "Maestro 1596837868705199",
-                                                            "Счет 64686473678894779589"),
-                                                 Operation (41428829, "2019-07-03T18:35:29.512364", "EXECUTED",
-                                                            {'amount': '8221.37', 'currency': {'name': 'USD',
-                                                                                                   'code': 'USD'}},
-                                                            "Перевод организации", "MasterCard 7158300734726758",
-                                                            "Счет 35383033474447895560")]
-    except NameError:
-        pass
+    s = io.StringIO()
+
+    with contextlib.redirect_stdout(s):
+        print(utils.add_in_class(test_list))
+
+    assert s.getvalue() == """[Operation (441945886, "2019-08-26T10:50:58.294041", "EXECUTED", {'amount':""" \
+                           """ '31957.58', 'currency': {'name': 'руб.', 'code': 'RUB'}}, "Перевод организации",""" \
+                           """ "Maestro 1596837868705199", "Счет 64686473678894779589"), Operation (41428829, "2""" \
+                           """019-07-03T18:35:29.512364", "EXECUTED", {'amount': '8221.37', 'currency': {'name': """ \
+                           """'USD', 'code': 'USD'}}, "Перевод организации", "MasterCard 7158300734726758", "Сче""" \
+                           """т 35383033474447895560")]\n"""
 
 
 def test_get_last_five_operations(get_list_for_test):
